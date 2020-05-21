@@ -5,7 +5,7 @@ const log = console.log
 
 const address = process.argv[2]
 
-geoCode(address, (error, data) => {
+geoCode(address, (error, {latitude, longitude, location}) => {
 
     if (error) {
         return log(error)
@@ -13,12 +13,12 @@ geoCode(address, (error, data) => {
         return log('Please provide a location')
     }
 
-    forcast(data.latitude, data.longitude, (error, forcastData) => {
+    forcast(latitude, longitude, (error, forcastData) => {
         if (error) {
             return log(error)
         }
 
-        log(data.location)
+        log(location)
         log(forcastData)
     })
 
